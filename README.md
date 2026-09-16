@@ -14,7 +14,7 @@ An independent, non-production concept for Foreman Locker Systems. The chat itse
 This implementation imports two real Libraries.dev React packages:
 
 - [`thinking-orbs`](https://libraries.dev/orbs.html): `ThinkingOrb` drives the assistant's idle and searching states.
-- [`voice-beam`](https://libraries.dev/voice.html): `VoiceBeam` wraps the actual chat composer and uses its `processing` state while the assistant is thinking. Despite its name, no microphone access is requested here.
+- [`voice-beam`](https://libraries.dev/voice.html): `VoiceBeam` wraps the actual chat composer and wraps the actual chat composer with its forest-style beam. Despite its name, no microphone access is requested here.
 
 Both are loaded as runtime React components from esm.sh. The surrounding Foreman chat behavior and visual design are original. Libraries.dev is the component source, not a screenshot or copied style.
 

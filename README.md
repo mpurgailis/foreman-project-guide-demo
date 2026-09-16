@@ -1,24 +1,23 @@
 # Foreman conversational project guide
 
-An independent, non-production concept for Foreman Locker Systems. The chat itself is the product surface: one assistant question at a time, an accumulating thread, suggested replies plus free text, adaptive follow-ups, and the recommendation and handoff inside the conversation.
+An independent, non-production Foreman Locker Systems qualification concept.
 
-## Foreman qualification logic
-- 1-4 and 5-14 locker requests get a commercial-pricing and scope check before sales time is used.
-- A small request can recover into the qualified route when it is part of a larger project or can grow to 15+.
-- 15-49 and 50-100+ projects route to sales with a material-family starting point.
-- Wet, humid, and outdoor paths start with Signature Phenolic; industrial/heavy-duty paths start with Traditional Phenolic or Hybrid; dry indoor paths start with Plastic Laminate or Hybrid.
-- The final message contains the product fit, all five answers, and the sales route.
-- No data is stored, submitted, or sent.
+## Libraries.dev implementation used
 
-## Libraries.dev components genuinely used
-This implementation imports two real Libraries.dev React packages:
+This version directly adapts the real `AgentChat` implementation and its matching `.st-chat*` styles from Libraries.dev, rather than presenting an original shell with an effect component as the site's chat code:
 
-- [`thinking-orbs`](https://libraries.dev/orbs.html): `ThinkingOrb` drives the assistant's idle and searching states.
-- [`voice-beam`](https://libraries.dev/voice.html): `VoiceBeam` wraps the actual chat composer and wraps the actual chat composer with its forest-style beam. Despite its name, no microphone access is requested here.
+- Source component: [`sites/home/src/studio/controls.tsx`](https://github.com/Jakubantalik/Libraries.dev/blob/44fef854b811c14b84ec670c8496436615a0c448/sites/home/src/studio/controls.tsx#L541-L926)
+- Source styles: [`sites/home/public/assets/playground.css`](https://github.com/Jakubantalik/Libraries.dev/blob/44fef854b811c14b84ec670c8496436615a0c448/sites/home/public/assets/playground.css#L1658-L1999)
+- Exact source commit inspected: `44fef854b811c14b84ec670c8496436615a0c448`
 
-Both are loaded as runtime React components from esm.sh. The surrounding Foreman chat behavior and visual design are original. Libraries.dev is the component source, not a screenshot or copied style.
+The adapted parts include the `AgentChat` transcript/composer structure, `st-chat` class model, message roles, textarea autosizing, Enter/Shift+Enter behavior, scroll pinning, busy/thinking state, and send-button structure. Foreman's questions, branching, results, colors and copy replace the Libraries.dev Studio-specific tuning workflow.
 
-## Run locally
-Serve `index.html` from a static web server, for example `npx serve .`.
+There is no published Libraries.dev chat package. The project's installable packages are visual effects (`border-beam`, `thinking-orbs`, `liquid-gooey`, `metal-fx`, `img-fx`, and `voice-beam`). This demo imports `thinking-orbs` for the real working state; the chat implementation itself is adapted from the repository source above.
 
-This demo is not affiliated with or endorsed by Foreman Locker Systems.
+Libraries.dev is MIT licensed. The required notice is retained in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+## Foreman flow
+
+The demo asks for project type, environment, quantity, stage and timing, then gives a material-family starting point and sales route. Small projects get a commercial minimum/price expectation check. No data is stored or sent.
+
+Serve `index.html` from any static web server.
